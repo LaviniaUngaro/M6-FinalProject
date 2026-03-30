@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _footstepInterval = 0.4f;
 
     private float _footstepTimer;
+    private bool _canMove = true;
     private Rigidbody2D _rb;
     private Vector2 _direction;
 
@@ -25,6 +26,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (!_canMove) return;
+
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
@@ -63,5 +66,10 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         _rb.MovePosition(_rb.position + _direction * (_speed * Time.fixedDeltaTime));
+    }
+
+    public void StopMovement()
+    {
+        _canMove = false;
     }
 }

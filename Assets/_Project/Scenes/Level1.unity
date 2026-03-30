@@ -3068,6 +3068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3cdd39ec7c5349caa10f267f9c6dcdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 1300549050}
   _onGameOver:
     m_PersistentCalls:
       m_Calls:

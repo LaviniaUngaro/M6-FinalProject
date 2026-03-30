@@ -7,11 +7,18 @@ public class GameManager : MonoBehaviour
     private bool _isGameOver = false;
     private bool _isWin = false;
 
+    [SerializeField] private PlayerController _player;
+
     [SerializeField] private UnityEvent _onGameOver;
     [SerializeField] private UnityEvent _onWin;
 
     public bool GetIsGameOver() => _isGameOver;
     public bool GetIsWin() => _isWin;
+
+    void Awake()
+    {
+        if (_player == null) _player = FindObjectOfType<PlayerController>();
+    }
 
     public void GameOver()
     {
@@ -19,6 +26,7 @@ public class GameManager : MonoBehaviour
 
         _isGameOver = true;
         Invoke(nameof(InvokeGameOver), 1);
+        _player.StopMovement();
     }
 
     public void InvokeGameOver()
@@ -34,6 +42,7 @@ public class GameManager : MonoBehaviour
 
         _isWin = true;
         Invoke(nameof(InvokeWin), 1);
+        _player.StopMovement();
     }
 
     public void InvokeWin()
